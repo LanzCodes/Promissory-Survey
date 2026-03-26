@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="forTotal.css">
+  <title>Total Results Dashboard</title>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  
+</head>
+
+<body>
+  <header class="topbar">
+    <a href="/dashboard" class="back"><i class="fa-solid fa-arrow-left"></i> Back</a>
+    <h1><i class="fa-solid fa-chart-pie"></i> Total Survey Dashboard</h1>
+    <div class="respondents-count">
+      <i class="fa-solid fa-users"></i>
+      <span><%= totalRespondents %> Respondents</span>
+    </div>
+  </header>
+  
+<div class="respondents-count">
+    <i class="fa-solid fa-users"></i>
+    <span><%= totalRespondents %> Respondents</span>
+  </div>
+  <main class="content">
+    <div class="overview">
+      <h2>Survey Summary Overview</h2>
+      <p>This page displays the total and average survey results dynamically from the database.</p>
+    </div>
+
+    <div class="charts">
+      <div class="chart-card">
+        <h3><i class="fa-solid fa-chart-pie"></i> Total Responses</h3>
+        <canvas id="sumChart"></canvas>
+      </div>
+
+      <div class="chart-card">
+        <h3><i class="fa-solid fa-chart-bar"></i> Average Ratings per Question</h3>
+        <canvas id="avgChart"></canvas>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; <%= new Date().getFullYear() %> Student Survey Dashboard — PHINMA University of Iloilo
+  </footer>
+
+  <script>
+    const totals = <%- JSON.stringify(totals) %>;
+    const avgScores = <%- JSON.stringify(avgScores) %>;
+
+    
+    const ctx1 = document.getElementById("sumChart").getContext("2d");
+    new Chart(ctx1, {
+      type: "pie",
+      data: {
+        labels: ["Very Satisfied", "Satisfied", "Neutral", "Dissatisfied", "Very Dissatisfied"],
+        datasets: [{
+          label: "Total Responses",
+          data: [
+            totals.VerySatisfied,
+            totals.Satisfied,
+            totals.Neutral,
+            totals.Dissatisfied,
+            totals.VeryDissatisfied
+          ],
+          backgroundColor: ["#58d68d", "#2ecc71", "#f1c40f", "#e67e22", "#e74c3c"]
+        }]
+      },
+      options: {
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top'
+          }
+        }
+      }
+    });
+
+    
+    const ctx2 = document.getElementById("avgChart").getContext("2d");
+    new Chart(ctx2, {
+      type: "bar",
+      data: {
+        labels: ["Q1","Q2","Q3","Q4","Q5","Q6","Q7","Q8","Q9","Q10"],
+        datasets: [{
+          label: "Average Rating",
+          data: avgScores,
+          backgroundColor: "#58d68d"
+        }]
+      },
+      options: {
+        scales: {
+          y: { beginAtZero: true, max: 5 }
+        },
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

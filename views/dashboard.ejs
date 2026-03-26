@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="forDashboard.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+  <div class="sidebar">
+  <h2>Admin</h2>
+  <ul>
+    <li><a href="/view-feedback"><i class="fa-solid fa-users"></i> Student List</a></li>
+    <li><a href="/dashboard"><i class="fa-solid fa-chart-bar"></i> Graphs</a></li>
+    <li><a href="/total"><i class="fa-solid fa-chart-bar"></i> Total Results</a></li>
+    <li><a href="/"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+  </ul>
+</div>
+
+  <div class="main-content">
+    <div class="header">
+      <img src="/images/UIlogo.png" alt="Logo" />
+      <h1>Survey Dashboard
+        <span class="respondents">
+      <i class="fa-solid fa-users"></i>
+      <%= totalRespondents %> Respondents
+    </span>
+      </h1>
+    </div>
+
+    <div class="charts">
+  <% questions.forEach((q, index) => { %>
+    <div class="chart-box">
+      <h3><%= q.question %></h3>
+      <canvas id="chart<%= index %>"></canvas>
+    </div>
+  <% }) %>
+</div>
+  <script>
+   
+    const questionData = <%- JSON.stringify(questions) %>;
+
+    questionData.forEach((q, i) => {
+      const ctx = document.getElementById(`chart${i}`).getContext("2d");
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["Very Satisfied", "Satisfied", "Neutral", "Dissatisfied", "Very Dissatisfied"],
+          datasets: [{
+            label: q.question,
+            data: [q.VerySatisfied, q.Satisfied, q.Neutral, q.Dissatisfied, q.VeryDissatisfied],
+            backgroundColor: ["#2ecc71", "#27ae60", "#f1c40f", "#e67e22", "#e74c3c"]
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Feedback Form</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="forIndex.css" />
+</head>
+<body>
+
+  <div class="form-container">
+    <form action="/submit" method="POST">
+      <h2>Student Feedback Form</h2>
+
+      <label>Full Name (optional):</label>
+      <input type="text" name="full_name" placeholder="Enter your full name">
+
+      <label>Year Level(optional):</label>
+      <select name="year_level">
+        <option value="">Select your year</option>
+        <option>1st Year</option>
+        <option>2nd Year</option>
+        <option>3rd Year</option>
+        <option>4th Year</option>
+      </select>
+
+      <% const questions = [
+        "The requirements for applying for a student promissory note were clearly stated.",
+        "The instructions and steps for the application process were easy to understand.",
+        "The university provided clear and consistent guidelines regarding the submission of requirements.",
+        "The processing time for the promissory note application was reasonable.",
+        "I received my approval or feedback within an acceptable time frame.",
+        "The staff handling the promissory note applications were approachable and respectful.",
+        "The staff provided adequate help when I had questions or concerns about the process.",
+        "I was satisfied with the overall service provided by the staff during the application process.",
+        "Information about the promissory note application was easy to access (e.g., bulletin boards, website, announcements).",
+        "I was well informed about the deadlines and procedures for the promissory note application."
+      ]; %>
+
+      <% questions.forEach((q, index) => { %>
+        <div class="question">
+          <label><%= index + 1 %>. <%= q %></label>
+          <div class="radio-group">
+            <label><input type="radio" name="q<%= index + 1 %>" value="Very Satisfied" required> Very Satisfied</label>
+            <label><input type="radio" name="q<%= index + 1 %>" value="Satisfied"> Satisfied</label>
+            <label><input type="radio" name="q<%= index + 1 %>" value="Neutral"> Neutral</label>
+            <label><input type="radio" name="q<%= index + 1 %>" value="Dissatisfied"> Dissatisfied</label>
+            <label><input type="radio" name="q<%= index + 1 %>" value="Very Dissatisfied"> Very Dissatisfied</label>
+          </div>
+        </div>
+      <% }) %>
+
+      <button type="submit">Submit Feedback</button>
+    </form>
+  </div>
+
+</body>
+</html>

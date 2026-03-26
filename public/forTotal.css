@@ -1,0 +1,132 @@
+  :root {
+      --primary: #27ae60;
+      --light-green: #58d68d;
+      --dark: #2c3e50;
+      --bg: #f4f6f9;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: var(--bg);
+      margin: 0;
+      padding: 0;
+      color: var(--dark);
+    }
+
+
+    .topbar {
+      position: relative; 
+  background: var(--primary);
+  color: var(--white);
+  padding: 15px 30px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+    }
+
+    .topbar h1 {
+      font-size: 1.6rem;
+      margin: 0;
+      font-weight: 600;
+    }
+.chart-card canvas {
+  width: 100% !important;   
+  height: 380px !important; 
+  margin: 0 auto;
+}
+    .back {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  text-decoration: none;
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+    .back:hover {
+      background: var(--white);
+      color: var(--primary);
+    }
+
+   
+    .content {
+      padding: 40px;
+    }
+
+    .overview {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .overview h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .charts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      justify-content: center;
+      align-items: start;
+    }
+ .respondents-count {
+  position: absolute;
+  top: 50%;
+  right: 30px;
+  transform: translateY(-50%);
+  background-color: #e8f8f5;
+  padding: 8px 16px;
+  border-radius: 10px;
+  color: #1e8449;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.respondents-count i {
+  font-size: 18px;
+  color: #27ae60;
+}
+
+
+    .chart-card {
+      background: var(--white);
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 25px;
+      text-align: center;
+      transition: transform 0.3s;
+      
+    }
+
+    .chart-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .chart-card h3 {
+      font-size: 1.2rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9rem;
+      color: #888;
+      background: var(--white);
+      margin-top: 40px;
+      border-top: 1px solid #ddd;
+    }

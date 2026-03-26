@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="forAdmin-login.css">
+  <title>Admin Login</title>
+
+    
+</head>
+<body>
+  <a href="/" class="back-btn">← Back</a>
+  <div class="wrapper">
+  
+    <div class="logo-container">
+      <img src="/images/UIlogo.png" alt="University Logo">
+    </div>
+
+   
+    <div class="form-container">
+      <h2>Admin Verification</h2>
+      <form action="/admin-login" method="POST">
+        <% if (error) { %>
+          <p><%= error %></p>
+        <% } %>
+        <input type="text" name="username" placeholder="Enter username" required>
+        <input type="password" name="password" placeholder="Enter password" required>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
